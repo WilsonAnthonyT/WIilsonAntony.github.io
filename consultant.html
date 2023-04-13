@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Reservation Consultant Form</title>
+  <link rel="stylesheet" href="style2.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+</head>
+<body>
+  <h1>Mulai Perjalanan-mu sekarang</h1>
+  <h2>dengan:</h2>
+  <div class="consultant-photo">
+    <img src="Image/GrowYourUMKM-invert2.png" alt="Consultant Photo">
+  </div>
+  <div class="container">
+    <div class="form">
+      <div class="form-group">
+        <label for="name">Nama:</label>
+        <input type="text" id="name" name="name" placeholder="Masukkan nama" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Masukkan E-mail" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Nomor telepon:</label>
+        <input type="tel" id="phone" name="phone" placeholder="Masukkan No.telp" required>
+      </div>
+      <div class="form-group">
+        <label for="date">Tanggal Reservasi:</label>
+        <input type="date" id="date" name="date" placeholder="Tanggal" required>
+      </div>
+      <div class="form-group">
+        <label for="time">Waktu Reservasi:</label>
+        <input type="time" id="time" name="time" required>
+      </div>
+      <div class="form-group">
+        <label for="photo">Kirimkan bukti-bukti sertifikasi usaha:</label>
+        <input type="file" id="photo" name="photo">
+      </div>
+      <div class="form-group">
+        <label for="location">Lokasi:</label>
+        <select name="loaction" id="location" required>
+          <option value="">Pilih Lokasi</option>
+          <option value="Online">Online</option>
+          <option value="Banjarmasin-city">Banjarmasin</option>
+        </select>
+        
+      </div>
+      
+      <div class="form-group">
+        <label for="payment">Metode Pembayaran:</label>
+        <select id="payment" name="payment" required>
+          <option value="">--Pilih metode pembayaran--</option>
+          <option value="Credit Card">Kartu Kredit</option>
+          <option value="Qris">Qris</option>
+          <option value="Cash">Cash</option>
+          <option value="Other">Kupon</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="service">Pilih layanan:</label>
+        <select id="service" name="service" required>
+          <option value="">--Pilih layanan--</option>
+          <option value="Consultation">Konsultasi</option>
+          <option value="Booking">Pengembangan</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      
+      <div class="consultant-list">
+        <h2></h2>
+        <ul id="consultants"></ul>
+        <button class="back-button" style="display:none">Back</button>
+      </div>
+    </div>
+    <button class="cons-btn" type="submit">Konfirmasi</button>
+
+  </div>
+  
+  <footer class="bg-dark text-white py-5">
+    <div class="containerx">
+      <div class="row">
+        <div class="col-md-4">
+          <h4>About Us</h4>
+          <p>GrowYourUMKM adalah platform yang membantu usaha kecil dan pengusaha mikro tumbuh dan berkembang bisnis mereka melalui pendidikan, jaringan, dan akses ke sumber daya.</p>
+        </div>
+        <div class="col-md-4">
+          <h4>Contact Us</h4>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-home"></i> Jl. Veteran no. 317, Banjarmasin</li>
+            <li><i class="fas fa-envelope"></i> info@growyourumkm.com</li>
+            <li><i class="fas fa-phone"></i> +62 123456789</li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h4>Follow Us</h4>
+          <ul class="list-inline">
+            <li class="list-inline-item"><a href="#"><i class="fab fa-facebook fa-2x"> GrowYourUmkm</i></a></li>
+            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-2x"></i>GrowYourUMKM.twt</a></li>
+            <li class="list-inline-item"><a href="#"><i class="fab fa-instagram fa-2x"></i></a>GrowYourUMKM</li>
+            <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin fa-2x"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-6">
+          <p>&copy; 2023 GrowYourUMKM. All Rights Reserved.</p>
+        </div>
+        <div class="col-md-6">
+          <ul class="list-inline float-md-right">
+            <li class="list-inline-item"><a href="#">Terms of Use</a></li>
+            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            <li class="list-inline-item"><a href="#">FAQ</a></li>
+            <li class="list-inline-item"><a href="#">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      
+    </div>
+  </footer>
+  
+    <script src="script2.js"></script>
+    </body>
+    </html>
