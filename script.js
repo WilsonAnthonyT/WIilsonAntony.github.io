@@ -1,120 +1,56 @@
-let myform = document.querySelector('.myform')
-let login = document.querySelector('#login-form')
-let menubar = document.querySelector('#menu-bars')
-let mynav = document.querySelector('.navbar')
+const header = document.querySelector('.site-header');
+const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.site-nav');
+const navLinks = document.querySelectorAll('.site-nav a');
+const reveals = document.querySelectorAll('.reveal');
+const year = document.querySelector('#year');
 
-login.onclick = () =>{
-    myform.classList.toggle('active');
+if (year) {
+  year.textContent = new Date().getFullYear();
 }
 
-menubar.onclick = () =>{
-    menubar.classList.toggle('fa-times')
-    mynav.classList.toggle('active')
-}
-
-let prevScrollPos = window.pageYOffset;
-
-window.onscroll = function() {
-  let currentScrollPos = window.pageYOffset;
-  if (prevScrollPos > currentScrollPos) {
-    document.querySelector('.header').classList.remove('hide');
-  } else {
-    document.querySelector('.header').classList.add('hide');
+window.addEventListener('scroll', () => {
+  if (header) {
+    header.classList.toggle('scrolled', window.scrollY > 12);
   }
-  prevScrollPos = currentScrollPos;
+});
+
+if (menuToggle && nav) {
+  menuToggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open navigation');
+    });
+  });
 }
 
-
-//portfolio
-
-$(document).ready(function(){
-  
-  //owl carousel
-  $('.owl-carousel').owlCarousel({
-    margin: 5,
-    nav: true,
-    loop: true,
-    autoplay: true,
-    autoplayTimeout: 2000,
-    autoplayHoverPause: true,
-    navText: ['<div class="owl-prev"><i class="fa fa-angle-left"></i></div>', ' <div class="owl-next"><i class="fa fa-angle-right"></i></div>'],
-
-    responsive: {
-      0: {
-        items: 1,
-        
-      },
-      600: {
-        items: 2,
-        
-      },
-      1000: {
-        items: 3,
-        
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
       }
-    }
-  });
-});
-
-
-// get the select element and consultant list container
-const select = document.querySelector('#expertise-filter');
-const consultantList = document.querySelector('.consultant-list');
-
-// add event listener to select element
-select.addEventListener('change', function() {
-  // get the selected value
-  const selectedValue = this.value;
-
-  // loop through all consultant cards and show/hide based on selected value
-  const consultantCards = consultantList.querySelectorAll('.consultant-card');
-  consultantCards.forEach(card => {
-    if (selectedValue === 'all') {
-      card.style.display = 'block';
-    } else if (card.classList.contains(selectedValue)) {
-      card.style.display = 'block';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-}); 
-
-const contactBtns = document.querySelectorAll('.contact-consultant-btn');
-
-  contactBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const email = e.currentTarget.getAttribute('data-email');
-      window.location.href = `mailto:${email}`;
     });
-  });
+  }, { threshold: 0.12 });
 
-  //rating
-  // Get all the star elements
-const stars = document.querySelectorAll('.star');
-
-// Add a click event listener to each star element
-stars.forEach(star => {
-  star.addEventListener('click', () => {
-    // Get the value of the clicked star
-    const value = star.getAttribute('data-value');
-
-    // Remove the 'selected' class from all the star elements
-    stars.forEach(star => {
-      star.classList.remove('selected');
-    });
-
-    // Add the 'selected' class to the clicked star and all the stars before it
-    for (let i = 1; i <= value; i++) {
-      stars[i - 1].classList.add('selected');
-    }
-  });
-});
-
-function openCalendlyPopup(event) {
-  const calendlyLink = event.target.getAttribute('data-link');
-  Calendly.initPopupWidget({url: calendlyLink});
-  return false;
+  reveals.forEach((element) => observer.observe(element));
+} else {
+  reveals.forEach((element) => element.classList.add('visible'));
 }
 
-const contactBtn = document.querySelector('.contact-consultant-btn');
-contactBtn.addEventListener('click', openCalendlyPopup);
+// Keep the public portfolio factual until verified academic metrics are provided.
+const heroStats = document.querySelectorAll('.hero-meta > div');
+if (heroStats.length >= 1) {
+  const firstValue = heroStats[0].querySelector('strong');
+  const firstLabel = heroStats[0].querySelector('span');
+  if (firstValue) firstValue.textContent = 'NTHU';
+  if (firstLabel) firstLabel.textContent = 'EECS Undergraduate';
+}
